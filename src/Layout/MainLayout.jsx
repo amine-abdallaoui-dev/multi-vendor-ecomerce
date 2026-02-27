@@ -8,7 +8,7 @@ const MainLayout = () => {
     const [isVisibel, setIsVisibel] = useState(true)
 
     return (
-        <div className="min-w-screen min-h-screen bg-[#edf5f5] flex gap-2 relative">
+        <div className="min-w-screen min-h-screen bg-[#edf5f5] flex gap-2 relative overflow-x-hidden">
             <div className={`${isVisibel ? "left-0" : "left-[-270px]"} w-[260px] min-h-screen z-[99] bg-[#072b2b] md:bg-[#072b2b] fixed top-0 left-0 transition-all`}>
                 <Sidebar isVisibel={isVisibel} setIsVisibel={setIsVisibel}/>
             </div>

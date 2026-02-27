@@ -10,6 +10,7 @@ import { IoIosChatboxes } from "react-icons/io";
 import { LuLogOut } from "react-icons/lu";
 
 import { ImUsers } from "react-icons/im";
+import AdminOrders from "../views/admin/AdminOrders.jsx";
 
 
 
@@ -26,7 +27,6 @@ export const allNavs = [
         path: 'admin/dashboard/orders',
         title : "Orders",
         icon : <MdBorderColor />,
-        element : "",
         role : 'admin'
     },
     {
@@ -40,14 +40,12 @@ export const allNavs = [
         path: 'admin/dashboard/sellers',
         title : "Sellers",
         icon : <FaUsers />,
-        element : "" ,
         role : 'admin'
     },
     {
         path: 'admin/dashboard/payment-request',
         title: 'Payment Request',
         icon : <MdOutlinePayments />,
-        element : "",
         role : 'admin'
     },
     {
@@ -61,7 +59,6 @@ export const allNavs = [
         path: 'admin/dashboard/sellers-request',
         title: 'Sellers Request',
         icon : <ImUsers />,
-        element : "" ,
         role : 'admin'
     },
 
@@ -69,7 +66,6 @@ export const allNavs = [
         path: 'admin/dashboard/chat-sellers',
         title: 'Chat sellers',
         icon: <IoIosChatboxes/>,
-        element : "" ,
         role : 'admin'
     },
 
@@ -77,7 +73,6 @@ export const allNavs = [
         path: '/logout',
         title : "Logout",
         icon : <LuLogOut/>,
-        element : "" ,
         role : 'admin'
     },
 

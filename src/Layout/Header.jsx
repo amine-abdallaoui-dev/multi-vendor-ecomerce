@@ -6,7 +6,7 @@ const Header = ({setIsVisibel,isVisibel}) => {
     const imagesPath = useSelector(state=>state.info.imagesPath);
     return (
         <>
-            <div onClick={()=>setIsVisibel(!isVisibel)} className={`w-full h-screen bg-gray-800 ${isVisibel ? "visible" : "hidden"}  md:invisible opacity-50 absolute top-0 left-0 z-[1]`}>
+            <div onClick={()=>setIsVisibel(!isVisibel)} className={`w-full  min-h-screen bg-gray-800 ${isVisibel ? "visible" : "hidden"}  md:invisible opacity-50 absolute top-0 left-0 z-[1]`}>
 
             </div>
             <div onClick={()=>setIsVisibel(!isVisibel)} className=" flex justify-end items-center ml-3 md:pl-6  border  rounded-md">
