@@ -5,6 +5,7 @@ import Sellers from "../../../views/admin/Sellers.jsx";
 import PaymentRequests from "../../../views/admin/PaymentRequests.jsx";
 import DeactiveSellers from "../../../views/admin/DeactiveSellers.jsx";
 import SellersRequests from "../../../views/admin/SellersRequests.jsx";
+import SellersChat from "../../../views/admin/SellersChat.jsx";
 
 
 export const adminRoutes = [
@@ -41,6 +42,11 @@ export const adminRoutes = [
     {
         path: "admin/dashboard/sellers-requests",
         element: <SellersRequests />,
+        role :"admin"
+    },
+    {
+        path: "admin/dashboard/sellers-chat",
+        element: <SellersChat />,
         role :"admin"
     }
 

@@ -63,7 +63,7 @@ export const allNavs = [
     },
 
     {
-        path: 'admin/dashboard/chat-sellers',
+        path: "admin/dashboard/sellers-chat",
         title: 'Chat sellers',
         icon: <IoIosChatboxes/>,
         role : 'admin'
