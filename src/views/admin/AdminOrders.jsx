@@ -19,18 +19,18 @@ const AdminOrders = () => {
                 </form>
             </div>
             <div className="w-full mx-5 bg-[#edf5f5] p-5 mt-[30px] h-auto md:overflow-hidden overflow-auto mb-[20px]">
-                <table className="w-full ">
-                    <tr className="text-sm font-medium border-b border-gray-600">
+                <table className="w-full overflow-x-scroll sm:overflow-x-scroll  md:overflow-x-scroll lg:overflow-x-hidden">
+                    <tr className="text-[13px] lg:text-sm font-medium border-b border-gray-600">
                         <td className="w-[20%] text-gray-900 py-4">Order Id</td>
                         <td className="w-[20%] text-gray-900">Price</td>
                         <td className="w-[20%] text-gray-900">Payment Status</td>
-                        <td className="w-[20%] text-gray-900">Order Status</td>
+                        <td className="w-[20%] text-gray-900">Status</td>
                         <td className="w-[20%] text-gray-900">Action</td>
                     </tr>
                     {
                         [1,2,3,4,5].map((item, index) => {
                             return (
-                                <tr className="text-sm font-[400] w-full ">
+                                <tr className="text-[13px] lg:text-sm font-[400] w-full hover:bg-white">
                                     <td className="w-[20%] text-gray-900 py-4">#757656</td>
                                     <td className="w-[20%] text-gray-900">$140</td>
                                     <td className="w-[20%] text-gray-900">Pending</td>
@@ -42,8 +42,8 @@ const AdminOrders = () => {
                     }
                 </table>
             </div>
-            <div className="w-[95%] flex justify-end mr-10 gap-1 items-center mb-3">
-                <span className="py-3 px-3 rounded-md bg-[#069f96] text-white font-medium hover:bg-green-400">
+            <div className="w-[95%] flex justify-end mr-10 gap-1 items-center mb-3 text-[13px] lg:text-sm">
+                <span className="py-3 px-3 rounded-md bg-[#069f96] text-white  font-medium hover:bg-green-400">
                     <FaArrowLeftLong/>
                 </span>
                 <span className="py-1 px-3 rounded-md bg-[#069f96] text-white font-medium hover:bg-green-400">1</span>

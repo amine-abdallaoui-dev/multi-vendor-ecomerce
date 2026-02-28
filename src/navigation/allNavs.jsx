@@ -37,26 +37,26 @@ export const allNavs = [
         role : 'admin'
     },
     {
-        path: 'admin/dashboard/sellers',
+        path: "admin/dashboard/sellers",
         title : "Sellers",
         icon : <FaUsers />,
         role : 'admin'
     },
     {
-        path: 'admin/dashboard/payment-request',
+        path: "admin/dashboard/payment-requests",
         title: 'Payment Request',
         icon : <MdOutlinePayments />,
         role : 'admin'
     },
     {
-        path: 'admin/dashboard/deactive-sellers',
+        path: "admin/dashboard/deactive-sellers",
         element : "" ,
         title : "Deactive Sellers",
         icon : <FaExpeditedssl />,
         role : 'admin'
     },
     {
-        path: 'admin/dashboard/sellers-request',
+        path: "admin/dashboard/sellers-requests",
         title: 'Sellers Request',
         icon : <ImUsers />,
         role : 'admin'
@@ -75,5 +75,6 @@ export const allNavs = [
         icon : <LuLogOut/>,
         role : 'admin'
     },
+
 
 ]

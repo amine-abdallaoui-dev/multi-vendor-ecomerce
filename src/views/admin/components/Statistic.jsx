@@ -7,8 +7,8 @@ import { MdBorderColor } from "react-icons/md";
 const Statistic = () => {
     return (
         <>
-            <div className="w-[300px] shadow-green-400 flex flex-wrap justify-between items-center px-5  bg-white rounded-lg py-[30px]">
-                <div className="flex flex-col justify-around">
+            <div className="w-[300px] shadow-green-400 flex hover:bg-[#edf5f5] border-2 hover:border-white flex-wrap justify-between items-center px-5  bg-white rounded-lg py-[30px]">
+                <div className="flex flex-col justify-around ">
                     <h3 className="font-bold text-3xl text-[#0f4749]">$1203</h3>
                     <h4 className="py-2 text-gray-800 font-medium">Totale sales</h4>
                 </div>
@@ -16,7 +16,7 @@ const Statistic = () => {
                     <MdOutlineCurrencyExchange className="text-3xl text-white" />
                 </div>
             </div>
-            <div className="w-[300px] flex flex-wrap justify-between items-center px-5  bg-white rounded-lg py-[30px]">
+            <div className="w-[300px] flex flex-wrap justify-between hover:bg-[#edf5f5] border-2 hover:border-white items-center px-5  bg-white rounded-lg py-[30px]">
                 <div className="flex flex-col justify-around">
                     <h3 className="font-bold text-3xl text-[#0f4749]">30</h3>
                     <h4 className="py-2 text-gray-800 font-medium">Totale Products</h4>
@@ -25,7 +25,7 @@ const Statistic = () => {
                     <MdOutlineProductionQuantityLimits className="text-3xl text-white" />
                 </div>
             </div>
-            <div className="w-[300px] flex flex-wrap justify-between items-center px-5  bg-white rounded-lg py-[30px]">
+            <div className="w-[300px] flex flex-wrap justify-between hover:bg-[#edf5f5] border-2 hover:border-white items-center px-5  bg-white rounded-lg py-[30px]">
                 <div className="flex flex-col justify-around">
                     <h3 className="font-bold text-3xl text-[#0f4749]">10</h3>
                     <h4 className="py-2 text-gray-800 font-medium">Totale Sellers</h4>
@@ -34,7 +34,7 @@ const Statistic = () => {
                     <RiUserStarFill className="text-3xl text-white" />
                 </div>
             </div>
-            <div className="w-[300px] flex flex-wrap justify-between items-center px-5  bg-white rounded-lg py-[30px]">
+            <div className="w-[300px] flex flex-wrap justify-between hover:bg-[#edf5f5] border-2 hover:border-white items-center px-5  bg-white rounded-lg py-[30px]">
                 <div className="flex flex-col justify-around">
                     <h3 className="font-bold text-3xl text-[#0f4749]">20</h3>
                     <h4 className="py-2 text-gray-800 font-medium">Totale Orders</h4>

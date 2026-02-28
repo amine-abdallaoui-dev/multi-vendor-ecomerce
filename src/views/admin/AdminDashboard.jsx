@@ -95,47 +95,30 @@ const AdminDashboard = () => {
                     <Link to=""><h5 className="text-gray-900 font-medium">View All</h5></Link>
                 </div>
                 <div className="w-full pt-8  h-[600px] mr-5  ">
-                    <table className="w-full overflow-scroll md:overflow-x-hidden">
-                        <thead className=" px-8 border-b border-[#072b2b] pb-4">
-                            <th className="w-full flex justify-between pb-3">
-                                <td className="w-[25%] text-start pl-8"><h2 className="text-[#072b2b] font-medium">Order Id</h2></td>
-                                <td className="w-[25%] text-start pl-8"><h2 className="text-[#072b2b] font-medium">Price</h2></td>
-                                <td className="w-[15%] text-start pl-8"><h2 className="text-[#072b2b] font-medium">Payment Status</h2></td>
-                                <td className="w-[15%] text-start pl-8"><h2 className="text-[#072b2b] font-medium">Order Status</h2></td>
-                                <td className="w-[10%] text-start pl-8"><h2 className="text-[#072b2b] font-medium">Active</h2></td>
-                            </th>
-                        </thead>
-                        <tbody className="text-center px-8 border-b border-[#072b2b] pb-4">
-                        <tr className="w-full flex justify-between pb-3 pt-3 border-b border-[#072b2b] ">
-                            <td className="w-[25%] text-start pl-8"><h2 className="text-[#072b2b] font-medium">#Y8U9U9U</h2></td>
-                            <td className="w-[25%] text-start pl-8"><h2 className="text-[#072b2b] font-medium">$300</h2></td>
-                            <td className="w-[15%] text-start pl-8"><h2 className="text-[#072b2b] font-medium">Pending</h2></td>
-                            <td className="w-[15%] text-start pl-8"><h2 className="text-[#072b2b] font-medium">Pending</h2></td>
-                            <td className="w-[10%] text-start pl-8"><h2 className="text-[#072b2b] font-medium">Pending</h2></td>
-                        </tr>
-                        <tr className="w-full flex justify-between pb-3 pt-3 border-b border-[#072b2b] ">
-                            <td className="w-[25%] text-start pl-8"><h2 className="text-[#072b2b] font-medium">#576566</h2></td>
-                            <td className="w-[25%] text-start pl-8"><h2 className="text-[#072b2b] font-medium">$140</h2></td>
-                            <td className="w-[15%] text-start pl-8"><h2 className="text-[#072b2b] font-medium">Pending</h2></td>
-                            <td className="w-[15%] text-start pl-8"><h2 className="text-[#072b2b] font-medium">Pending</h2></td>
-                            <td className="w-[10%] text-start pl-8"><h2 className="text-[#072b2b] font-medium">Pending</h2></td>
-                        </tr>
-                        <tr className="w-full flex justify-between pb-3 pt-3 border-b border-[#072b2b] ">
-                            <td className="w-[25%] text-start pl-8"><h2 className="text-[#072b2b] font-medium">#87U8UU98UUU9</h2></td>
-                            <td className="w-[25%] text-start pl-8"><h2 className="text-[#072b2b] font-medium">$267</h2></td>
-                            <td className="w-[15%] text-start pl-8"><h2 className="text-[#072b2b] font-medium">completed</h2></td>
-                            <td className="w-[15%] text-start pl-8"><h2 className="text-[#072b2b] font-medium">completed</h2></td>
-                            <td className="w-[10%] text-start pl-8"><h2 className="text-[#072b2b] font-medium">pending</h2></td>
-                        </tr>
-                        <tr className="w-full flex justify-between pb-3 pt-3 border-b border-[#072b2b] ">
-                            <td className="w-[25%] text-start pl-8"><h2 className="text-[#072b2b] font-medium">#8U89U98U9U</h2></td>
-                            <td className="w-[25%] text-start pl-8"><h2 className="text-[#072b2b] font-medium">$70</h2></td>
-                            <td className="w-[15%] text-start pl-8"><h2 className="text-[#072b2b] font-medium">Pending</h2></td>
-                            <td className="w-[15%] text-start pl-8"><h2 className="text-[#072b2b] font-medium">Pending</h2></td>
-                            <td className="w-[10%] text-start pl-8"><h2 className="text-[#072b2b] font-medium">Pending</h2></td>
-                        </tr>
-                        </tbody>
-                    </table>
+                    <div className="w-full mx-5 bg-[#edf5f5] p-5 h-auto md:overflow-hidden overflow-auto mb-[20px]">
+                        <table className="w-full overflow-x-scroll sm:overflow-x-scroll  md:overflow-x-scroll lg:overflow-x-hidden">
+                            <tr className="text-[13px] lg:text-sm font-medium border-b border-gray-600">
+                                <td className="w-[20%] text-gray-900 py-4">Order Id</td>
+                                <td className="w-[20%] text-gray-900">Price</td>
+                                <td className="w-[20%] text-gray-900">Payment Status</td>
+                                <td className="w-[20%] text-gray-900">Order Status</td>
+                                <td className="w-[20%] text-gray-900">Active</td>
+                            </tr>
+                            {
+                                [1,2,3,4,5].map((item, index) => {
+                                    return (
+                                        <tr className="text-[13px] lg:text-sm font-[400] w-full hover:bg-white">
+                                            <td className="w-[20%] text-gray-900 py-4">#757656</td>
+                                            <td className="w-[20%] text-gray-900">$140</td>
+                                            <td className="w-[20%] text-gray-900">Pending</td>
+                                            <td className="w-[20%] text-gray-900">Pending</td>
+                                            <td className="w-[20%] text-green-500"><Link to="">View order</Link></td>
+                                        </tr>
+                                    )
+                                })
+                            }
+                        </table>
+                    </div>
                 </div>
             </div>
         </>
