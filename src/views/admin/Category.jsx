@@ -6,6 +6,7 @@ import { FaUserEdit } from "react-icons/fa";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { IoImagesSharp } from "react-icons/io5";
 import { AiFillCloseSquare } from "react-icons/ai";
+import SearchDataTable from "../seller/components/SearchDataTable.jsx";
 
 
 
@@ -18,16 +19,7 @@ const Category = () => {
     return (
         <div className="flex w-full gap-3">
             <div className="w-full lg:w-7/12 h-auto p-5 bg-white rounded-md shadow-md shadow-green-200/50">
-                <div className="items-center flex  w-full h-[80px]">
-                    <form className=" hidden md:flex  justify-between w-full">
-                        <select className=" md:px-3 py-2 bg-[#edf5f5] outline-none border-[#edf5f5] ">
-                            <option value="5">5</option>
-                            <option value="10">10</option>
-                            <option value="25">25</option>
-                        </select>
-                        <input className="md:w-[15%] md:px-3 md:py-2 bg-[#edf5f5] outline-none border-[#edf5f5]"  type="text" placeholder="Search ..."/>
-                    </form>
-                </div>
+                <SearchDataTable/>
                 <div className="lg:hidden w-full flex items-center justify-between">
                     <h2 className="text-sm font-medium text-gray-900">Add Category</h2>
                     <button onClick={()=>setShow(!show)} className="px-5 py-2 bg-green-600 text-white rounded-md">Add</button>

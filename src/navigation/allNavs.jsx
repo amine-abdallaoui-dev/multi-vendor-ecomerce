@@ -1,4 +1,3 @@
-import { MdSpaceDashboard } from "react-icons/md";
 
 import { MdBorderColor } from "react-icons/md";
 import { BiSolidCategory } from "react-icons/bi";
@@ -8,9 +7,12 @@ import { MdOutlinePayments } from "react-icons/md";
 import { FaExpeditedssl } from "react-icons/fa";
 import { IoIosChatboxes } from "react-icons/io";
 import { LuLogOut } from "react-icons/lu";
-
 import { ImUsers } from "react-icons/im";
-import AdminOrders from "../views/admin/AdminOrders.jsx";
+import { FaProductHunt } from "react-icons/fa6";
+import { FaCartFlatbed } from "react-icons/fa6";
+import { TbShoppingCartDiscount } from "react-icons/tb";
+
+
 
 
 
@@ -75,6 +77,35 @@ export const allNavs = [
         icon : <LuLogOut/>,
         role : 'admin'
     },
+    {
+        path: 'seller/dashboard',
+        title : "Dashboard",
+        icon : <AiFillDashboard />,
+        role : 'seller'
+    },
+    {
+        path: 'seller/dashboard/add-product',
+        title : "Add Product",
+        icon : <FaProductHunt />,
+        role : 'seller'
+    },
+    {
+        path: 'seller/dashboard/all-product',
+        title : "All Products",
+        icon : <FaCartFlatbed />,
+        role : 'seller'
+    },
+    {
+        path: 'seller/dashboard/discount/products',
+        title : "ALl Discounts",
+        icon : <TbShoppingCartDiscount />,
+        role : 'seller'
+    },
+
+
+
+    // start seller navigations
+
 
 
 ]

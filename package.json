@@ -25,6 +25,7 @@
     "react-spinners": "^0.17.0",
     "react-window": "^2.2.7",
     "redux-thunk": "^3.1.0",
+    "select2-react-component": "^6.1.1",
     "socket.io-client": "^4.8.3"
   },
   "devDependencies": {
