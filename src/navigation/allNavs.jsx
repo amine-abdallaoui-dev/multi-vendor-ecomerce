@@ -11,6 +11,12 @@ import { ImUsers } from "react-icons/im";
 import { FaProductHunt } from "react-icons/fa6";
 import { FaCartFlatbed } from "react-icons/fa6";
 import { TbShoppingCartDiscount } from "react-icons/tb";
+import { MdOutlineBorderColor } from "react-icons/md";
+import { FaRocketchat } from "react-icons/fa";
+import { IoChatboxEllipsesSharp } from "react-icons/io5";
+import { CgProfile } from "react-icons/cg";
+
+
 
 
 
@@ -101,6 +107,40 @@ export const allNavs = [
         icon : <TbShoppingCartDiscount />,
         role : 'seller'
     },
+    {
+        path: 'seller/dashboard/orders',
+        title : "Orders",
+        icon : <MdOutlineBorderColor />,
+        role : 'seller'
+    },
+
+    {
+        path: 'seller/dashboard/payments',
+        title : "Payment Request",
+        icon : <MdOutlinePayments />,
+        role : 'seller'
+    },
+    {
+        path: 'seller/dashboard/chat-customer',
+        title : "Customer chat",
+        icon : <IoChatboxEllipsesSharp />,
+        role : 'seller'
+    },
+    {
+        path: 'seller/dashboard/chat-support',
+        title : "Support chat",
+        icon : <FaRocketchat />,
+        role : 'seller'
+    },
+    {
+        path: 'seller/dashboard/profile',
+        title : "Profile",
+        icon : <CgProfile />,
+        role : 'seller'
+    },
+
+
+
 
 
 

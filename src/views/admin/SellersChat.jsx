@@ -55,7 +55,7 @@ const SellersChat = () => {
                   [&::-webkit-scrollbar]:hidden
                   [-ms-overflow-style:none]
                   [scrollbar-width:none]">
-                       <div className="flex h-full  flex-col-reverse  justify-start overflow-y-auto  [&::-webkit-scrollbar]:hidden
+                       <div className="flex h-full  flex-col justify-start overflow-y-auto  [&::-webkit-scrollbar]:hidden
                   [-ms-overflow-style:none]
                   [scrollbar-width:none]">
                            <div className="w-full ">
