@@ -1,8 +1,15 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import React, {useEffect, useState} from 'react'
+import {Link, useNavigate} from 'react-router-dom';
+import {useDispatch, useSelector} from "react-redux";
+import {clearMessage, sellerLogin} from "../../store/reducers/authreducer.js";
+import toast from "react-hot-toast";
+import {PulseLoader} from "react-spinners";
 
 export default function Login() {
 
+  const dispatch = useDispatch();
+  const msg = useSelector(state=>state.auth)
+  const navigate = useNavigate()
   const [state,setState] = useState({
     email : "",
     password : ""
@@ -13,8 +20,25 @@ export default function Login() {
       ...state,
       [e.target.name] : e.target.value
     })
-    console.log(state)
-  } 
+  }
+
+  const HandelFormSubmit = (e)=>{
+    e.preventDefault()
+    dispatch(sellerLogin(state))
+  }
+
+  useEffect(() => {
+    if(msg.successMessage !== ""){
+      toast.success(msg.successMessage)
+      dispatch(clearMessage(state))
+      navigate("/")
+
+    }
+    if(msg.errorMessage !== ""){
+      toast.error(msg.errorMessage)
+      dispatch(clearMessage(state))
+    }
+  }, [msg]);
 
   return (
     <div
@@ -33,7 +57,7 @@ export default function Login() {
             Welcome to E-commerce
           </h1>
         </div>
-        <form>
+        <form onSubmit={HandelFormSubmit}>
           <div className="mx-5 flex flex-col justify-center gap-2 mt-6">
             <label htmlFor="email" className="text-white text-md">
               Email address
@@ -63,11 +87,11 @@ export default function Login() {
             />
           </div>
           <div className="mx-5 flex flex-col justify-center gap-2 mt-6 ">
-            <button
+            <button disabled={msg.loader ? true : false} type="submit"
               type="submit"
               className=" mx-2 mt-3 mb-8 bg-opacity-100 bg-green-400 py-3 rounded-lg border-white border hover:bg-black text-white hover:shadow-md hover:shadow-gray-700/50"
             >
-              Login
+              {msg.loader ? <PulseLoader color={"white"} /> : "Login"}
             </button>
           </div>
           <div className="mx-5 flex items-center gap-4  flex justify-center items-center mb-8">

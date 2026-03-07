@@ -41,8 +41,8 @@ export default function AdminLogin() {
     }
     if (successMessage) {
       toast.success(successMessage);
-      navigate("/")
       dispatch(clearMessage(state))
+      navigate("/")
     }
   },[errorMessage,successMessage])
  

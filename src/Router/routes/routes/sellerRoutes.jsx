@@ -13,30 +13,26 @@ import Profile from "../../../views/seller/profile.jsx";
 
 
 export const sellerRoutes = [
-    {
-        path: '/',
-        element : <Home/>,
-        ability : ["admin","seller"]
-    },
+
     {
         path: 'seller/dashboard',
         element : <SellerDashboard/>,
-        ability : ["seller"]
+        role : "seller"
     },
     {
         path: 'seller/dashboard/add-product',
         element : <AddProduct/>,
-        ability : ["seller"]
+        role : "seller"
     },
     {
         path: 'seller/dashboard/all-product',
         element : <AllProduct/>,
-        ability: ["seller"]
+        role : "seller"
     },
     {
         path: 'seller/dashboard/discount/products',
         element : <DiscountProduct/>,
-        ability: ["seller"]
+        role : "seller"
     },
     {
         path: 'seller/dashboard/orders',

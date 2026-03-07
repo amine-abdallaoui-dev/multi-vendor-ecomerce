@@ -1,9 +1,16 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import React, {useEffect, useState} from 'react'
+import {Link, useNavigate} from 'react-router-dom';
+import {useDispatch, useSelector} from "react-redux";
+import {clearMessage, seller_register} from "../../store/reducers/authreducer.js";
+import toast from "react-hot-toast";
+import {PulseLoader} from "react-spinners";
 
 export default function Register() {
 
 
+  const dispatch = useDispatch();
+  const msg = useSelector(state=>state.auth)
+  const navigate = useNavigate()
   const [state,setState] = useState({
     name :"",
     email : "",
@@ -17,7 +24,26 @@ export default function Register() {
       [e.target.name] : e.target.value
     })
   }
-  
+
+  const handelSubmitData = (e)=>{
+    e.preventDefault();
+    dispatch(seller_register(state))
+
+  }
+
+  useEffect(() => {
+      if(msg.errorMessage !== "") {
+        toast.error(msg.errorMessage)
+        dispatch(clearMessage(state))
+        navigate('/')
+      }
+      if(msg.successMessage !== ""){
+        toast.success(msg.successMessage)
+        dispatch(clearMessage(state))
+      }
+
+
+  }, [msg]);
 
   return (
     <div className="flex justify-center items-center min-w-screen min-h-screen bg-gray-800">
@@ -27,7 +53,7 @@ export default function Register() {
             Welcome to E-commerce
           </h1>
         </div>
-        <form>
+        <form onSubmit={handelSubmitData}>
           <div className="mx-5 flex flex-col justify-center gap-2 mt-6">
             <label htmlFor="name" className="text-white text-md">
               Full Name
@@ -85,11 +111,11 @@ export default function Register() {
             </label>
           </div>
           <div className="mx-5 flex flex-col justify-center gap-2 mt-6 ">
-            <button
+            <button disabled={msg.loader ? true : false} type="submit"
               type="submit"
               className=" mx-2 mt-3  bg-opacity-100 bg-green-400 py-3 rounded-lg border-white border hover:bg-black text-white hover:shadow-md hover:shadow-gray-700/50"
             >
-              Register
+              {msg.loader ? <PulseLoader color={"white"} /> : "Sing up"}
             </button>
           </div>
           *

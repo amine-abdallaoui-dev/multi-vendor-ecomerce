@@ -1,9 +1,9 @@
-import React from 'react'
 import { useRoutes } from 'react-router-dom'
 
 export default function Router({ allRoutes }) {
   
   const routes = useRoutes(allRoutes)
+  console.log(routes)
   return routes;
 
 

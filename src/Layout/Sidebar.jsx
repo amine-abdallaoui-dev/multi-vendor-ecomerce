@@ -7,7 +7,8 @@ import {useLocation} from "react-router-dom";
 
 const Sidebar = () => {
     const [state, setState] = useState([])
-    const allNavs = getAllNavs("seller")
+    const {role} = useSelector((state) => state.auth)
+    const allNavs = getAllNavs(role)
     const imagesPath = useSelector(state=>state.info)
     useEffect(()=>{
         setState(allNavs)
