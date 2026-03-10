@@ -1,56 +1,30 @@
 import React, {useEffect, useState} from 'react';
 import { IoImagesOutline } from "react-icons/io5";
 import { IoCloseCircle } from "react-icons/io5";
+import {addProduct, clearMessage, getCategory} from "../../store/reducers/productReducer.js";
+import {useDispatch, useSelector} from "react-redux";
+import toast from "react-hot-toast";
+import {PulseLoader} from "react-spinners";
+
 
 
 const AddProduct = () => {
 
-    const cats = [
-        {
-            id: 1,
-            name :"bags"
-        },
-        {
-            id: 2,
-            name :"shoes"
-        },
-        {
-            id: 3,
-            name :"mobile"
-        },
-        {
-            id: 1,
-            name :"computers"
-        },
-        {
-            id: 1,
-            name :"clothing"
-        },
-        {
-            id: 1,
-            name :"food"
-        },
-        {
-            id: 3,
-            name :"mobile"
-        },
-        {
-            id: 1,
-            name :"computers"
-        },
-        {
-            id: 1,
-            name :"clothing"
-        },
-        {
-            id: 1,
-            name :"food"
-        },
 
-    ]
-
+    const [product,setProduct] = useState({
+        title :"",
+        brands : "",
+        category:"",
+        price : "",
+        description : "",
+        discount : "",
+        stock : "",
+        images : ""
+    });
     const [images , setImages] = useState([])
     const [showimages,setShowImages]   = useState([])
+    const dispatch = useDispatch();
+    const {loader,successMessage,errorMessage,categories} = useSelector(state=>state.product)
     const handelImages = (e)=>{
         const files = e.target.files;
         const length = files.length;
@@ -58,8 +32,9 @@ const AddProduct = () => {
         for (let i = 0; i < length; i++) {
             imageUrl.push({url : URL.createObjectURL(files[i])});
         }
+        setImages(files)
 
-        setImages([...images,files])
+
         setShowImages([...showimages,...imageUrl])
     }
 
@@ -70,30 +45,75 @@ const AddProduct = () => {
         setShowImages(filterImages)
     }
 
-    console.log(showimages)
+
+
+
+    const handelFormSubmit = (e)=>{
+        e.preventDefault()
+        const uploaded = [];
+        for (let i = 0; i < images.length ; i++) {
+            uploaded.push(images[i])
+        }
+        dispatch(addProduct({
+            ...product,
+            images : uploaded
+        }))
+    }
+    useEffect(()=>{
+        if(errorMessage !== ""){
+            toast.error(errorMessage);
+            dispatch(clearMessage())
+        }
+        if(successMessage !== ""){
+            toast.success(successMessage)
+            dispatch(clearMessage())
+            setProduct({
+                title :"",
+                brands : "",
+                category:"",
+                price : "",
+                description : "",
+                discount : "",
+                stock : "",
+                images : ""
+            })
+            setShowImages([])
+            setImages([])
+
+        }
+    },[errorMessage,successMessage])
+
+    useEffect(() => {
+        dispatch(getCategory())
+        console.log("this categories " + categories.name)
+    }, []);
+
     return (
         <div className="w-full h-auto ml-0 lg:ml-4 bg-white mt-[120px] lg:my-5 " >
-            <form>
+            <form onSubmit={handelFormSubmit}>
                 <div className="w-[95%] flex items-center gap-4 mx-4 pt-2 lg:pt-5">
                     <div className="w-full lg:w-6/12">
                         <label className="mb-2 text-gray-900 font-medium text-sm">Product Title :</label>
-                        <input className="w-full my-2 outline-none rounded-md text-sm border border-green-300 bg-[#edf5f5] px-3 py-2 focus:border-none focus:outline-green-400"  type="text" placeholder="Product Name"  />
+                        <input value={product.title} onChange={(e)=>setProduct({...product,title:e.target.value})} name='title' className="w-full my-2 outline-none rounded-md text-sm border border-green-300 bg-[#edf5f5] px-3 py-2 focus:border-none focus:outline-green-400"  type="text" placeholder="Product Name"  />
                     </div>
                     <div className="w-full lg:w-6/12 ml-4">
                         <label className="mb-2 text-gray-900 font-medium text-sm">Brand :</label>
-                        <input className="w-full my-2 outline-none rounded-md text-sm border border-green-300 bg-[#edf5f5] px-3 py-2 focus:border-none focus:outline-green-400"  type="text" placeholder="Brand Name"  />
+                        <input value={product.brands} onChange={(e)=>setProduct({...product,brands:e.target.value})}name="brand" className="w-full my-2 outline-none rounded-md text-sm border border-green-300 bg-[#edf5f5] px-3 py-2 focus:border-none focus:outline-green-400"  type="text" placeholder="Brand Name"  />
                     </div>
                 </div>
                 <div className="w-[95%] flex items-center gap-4 mx-4 pt-2 lg:pt-5 relative">
                     <div className="w-full lg:w-6/12 ml-4">
                         <label className="mb-2 text-gray-900 font-medium text-sm">Category :</label>
-                        <select className="w-full my-2   outline-none rounded-md text-sm border border-green-300 bg-[#edf5f5] px-3 py-2 focus:border-none focus:outline-green-400">
+                        <select value={product.category} onChange={(e)=>setProduct({...product,category:e.target.value})} name="category" className="w-full my-2   outline-none rounded-md text-sm border border-green-300 bg-[#edf5f5] px-3 py-2 focus:border-none focus:outline-green-400">
                             {
 
 
-                                cats.map(cat => {
+                                categories.map(cat => {
                                     return (
-                                        <option value={cat.name}>{cat.name}</option>
+                                        <>
+                                            <option>Select ...</option>
+                                            <option value={cat.name}>{cat.name}</option>
+                                        </>
                                     )
                                 })
                             }
@@ -101,25 +121,25 @@ const AddProduct = () => {
                     </div>
 
                     <div className="w-full lg:w-6/12 ml-4">
-                        <label className="mb-2 text-gray-900 font-medium text-sm">Brand :</label>
-                        <input className="w-full my-2 outline-none rounded-md text-sm border border-green-300 bg-[#edf5f5] px-3 py-2 focus:border-none focus:outline-green-400"  type="text" placeholder="Brand Name"  />
+                        <label className="mb-2 text-gray-900 font-medium text-sm">Stock :</label>
+                        <input value={product.stock} onChange={(e)=>setProduct({...product,stock:e.target.value})} name="stock" className="w-full my-2 outline-none rounded-md text-sm border border-green-300 bg-[#edf5f5] px-3 py-2 focus:border-none focus:outline-green-400"  type="text" placeholder="Brand Name"  />
                     </div>
                 </div>
                 <div className="w-[95%] flex items-center gap-4 mx-4 pt-2 lg:pt-5">
                     <div className="w-full lg:w-6/12">
                         <label className="mb-2 text-gray-900 font-medium text-sm">Product Price :</label>
-                        <input className="w-full my-2 outline-none rounded-md text-sm border border-green-300 bg-[#edf5f5] px-3 py-2 focus:border-none focus:outline-green-400"  type="text" placeholder="Price"  />
+                        <input value={product.price} onChange={(e)=>setProduct({...product,price:e.target.value})} name="price" className="w-full my-2 outline-none rounded-md text-sm border border-green-300 bg-[#edf5f5] px-3 py-2 focus:border-none focus:outline-green-400"  type="text" placeholder="Price"  />
                     </div>
                     <div className="w-full lg:w-6/12 ml-4">
                         <label className="mb-2 text-gray-900 font-medium text-sm">Discount :</label>
-                        <input className="w-full my-2 outline-none rounded-md text-sm border border-green-300 bg-[#edf5f5] px-3 py-2 focus:border-none focus:outline-green-400"  type="text" placeholder="dicount %"/>
+                        <input value={product.discount} onChange={(e)=>setProduct({...product,discount:e.target.value})} name="discount" className="w-full my-2 outline-none rounded-md text-sm border border-green-300 bg-[#edf5f5] px-3 py-2 focus:border-none focus:outline-green-400"  type="text" placeholder="dicount %"/>
                     </div>
                 </div>
 
                 <div className="w-[95%] flex items-center gap-4 mx-4 pt-2 lg:pt-5 relative">
                     <div className="w-full lg:w-full ml-4">
                         <label className="mb-2 text-gray-900 font-medium text-sm">Description :</label>
-                        <textarea className="w-full my-2 outline-none rounded-md text-sm border border-green-300 bg-[#edf5f5] px-3 py-2 focus:border-none focus:outline-green-400" cols="10" rows="10"></textarea>
+                        <textarea value={product.description} onChange={(e)=>setProduct({...product,description:e.target.value})} name="description" className="w-full my-2 outline-none rounded-md text-sm border border-green-300 bg-[#edf5f5] px-3 py-2 focus:border-none focus:outline-green-400" cols="10" rows="10"></textarea>
                     </div>
                 </div>
 
@@ -140,11 +160,17 @@ const AddProduct = () => {
                         <span><IoImagesOutline className="text-gray-800"/></span>
                         <span className="text-gray-800 text-sm">Upload Images</span>
                     </label>
-                    <input onChange={handelImages} className='hidden' type='file' multiple id="images" name="images"/>
+                    <input  onChange={handelImages } className='hidden' type='file' multiple id="images" name="images"/>
 
                 </div>
                 <div className="flex justify-center items-center w-[230px]">
-                    <button className="w-full px-3 py-2  mx-6  hover:shadow-md shadow-green-300 text-white my-3 bg-green-400 rounded-md">Add Product</button>
+                    <button
+                        type="submit"
+                        disabled={loader ? true : false}
+                        className="w-full mx-2 mt-3 mb-8 bg-opacity-100 bg-green-400 py-3 rounded-lg border-white border hover:bg-green-900 text-white hover:shadow-md hover:shadow-gray-700/50"
+                    >
+                        {loader ? <PulseLoader color={"white"} /> : "Add Category"}
+                    </button>
                 </div>
             </form>
         </div>
