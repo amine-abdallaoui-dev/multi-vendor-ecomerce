@@ -21,6 +21,8 @@ const AddProduct = () => {
         stock : "",
         images : ""
     });
+
+
     const [images , setImages] = useState([])
     const [showimages,setShowImages]   = useState([])
     const dispatch = useDispatch();

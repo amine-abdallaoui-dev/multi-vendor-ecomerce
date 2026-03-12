@@ -45,20 +45,83 @@ export const getCategory = createAsyncThunk(
 )
 
 
+export const getProducts = createAsyncThunk(
+    'products/getProducts',
+    async ({pageNumber,parPage,searchValue},{fulfillWithValue,rejectWithValue}) => {
+        try {
+            const {data} = await api.get(`/get-products?page=${pageNumber}&&parPage=${parPage}&&search=${searchValue}`, {withCredentials: true});
+            return fulfillWithValue(data);
+        }catch(error) {
+            return rejectWithValue(error.response.data);
+        }
+    }
+)
+
+
+export const getProductById = createAsyncThunk(
+    'products/getProductById',
+    async ({productId},{fulfillWithValue,rejectWithValue}) => {
+       console.log(productId)
+        try {
+            const {data} = await api.get(`/get-edit-product/${productId}`,{withCredentials:true});
+            console.log(data);
+            return fulfillWithValue(data);
+        }catch(error) {
+            return rejectWithValue(error.message);
+        }
+    }
+)
+
+
+export const updateProduct = createAsyncThunk(
+    'products/updateProduct',
+    async (product,{fulfillWithValue,rejectWithValue}) => {
+        try{
+
+            const {data} = await  api.post("/update-product",product,{withCredentials:true});
+            console.log(data);
+            return fulfillWithValue(data);
+        }catch (err){
+            console.log(err.response.data);
+        }
+    }
+)
+
+export const updateImages = createAsyncThunk(
+    'products/updateImages',
+        async ({oldImage,newImage,productId},{fulfillWithValue,rejectWithValue}) => {
+            let fromData = new FormData();
+            fromData.append('newImage',newImage);
+            fromData.append('oldImage',oldImage);
+            fromData.append('productId',productId);
+            try {
+                const {data} = await api.post("/update-images",fromData,{withCredentials:true});
+                console.log(data);
+                return fulfillWithValue(data);
+            }catch (error) {
+                console.log(error);
+                return rejectWithValue(error);
+            }
+        }
+)
 const productReducer = createSlice({
     name : 'product',
     initialState : {
         successMessage : "",
         errorMessage : "",
         loader : false,
+        imageLoader : false,
         products : [],
+        productsCount : "",
         categories : [],
+        product : ""
     },
     reducers : {
         clearMessage : (state) => {
             state.successMessage = "";
             state.errorMessage = "";
-        }
+        },
+
     },
     extraReducers : (builder)=>{
         builder
@@ -76,7 +139,33 @@ const productReducer = createSlice({
             .addCase(getCategory.fulfilled,(state,{payload})=>{
                 state.categories = [...payload.categories];
             })
-
+            .addCase(getProducts.fulfilled,(state,{payload})=>{
+                state.products = [...payload.products];
+                state.productsCount = payload.productsCount;
+            })
+            .addCase(getProductById.fulfilled,(state,{payload})=>{
+                state.product = payload.product;
+            })
+            .addCase(updateProduct.pending,(state)=>{
+                state.loader = true;
+            })
+            .addCase(updateProduct.rejected,(state,{payload})=>{
+                state.loader = false;
+                state.errorMessage = payload.error
+            })
+            .addCase(updateProduct.fulfilled,(state,{payload})=>{
+                state.loader = false;
+                state.successMessage = payload.message;
+                state.product = payload.product;
+            })
+            .addCase(updateImages.pending,(state,{payload})=>{
+                state.imageLoader = true;
+            })
+            .addCase(updateImages.fulfilled,(state,{payload})=>{
+                state.imageLoader = false;
+                state.successMessage = payload.message;
+                state.product = payload.product;
+            })
     }
 })
 

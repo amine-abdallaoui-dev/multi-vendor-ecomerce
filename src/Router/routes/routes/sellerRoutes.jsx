@@ -10,12 +10,13 @@ import SellerPaymentRequests from "../../../views/seller/SellerPaymentRequests.j
 import ChatSupport from "../../../views/seller/ChatSupport.jsx";
 import ChatCustomer from "../../../views/seller/ChatCustomer.jsx";
 import Profile from "../../../views/seller/profile.jsx";
+import EditProduct from "../../../views/seller/EditProduct.jsx";
 
 
 export const sellerRoutes = [
 
     {
-        path: 'seller/dashboard',
+        path: '/seller/dashboard',
         element : <SellerDashboard/>,
         role : "seller"
     },
@@ -25,7 +26,7 @@ export const sellerRoutes = [
         role : "seller"
     },
     {
-        path: 'seller/dashboard/all-product',
+        path: '/seller/dashboard/all-product',
         element : <AllProduct/>,
         role : "seller"
     },
@@ -47,13 +48,13 @@ export const sellerRoutes = [
         visibility : ['active','deactive']
     },
     {
-        path: 'seller/dashboard/payments',
+        path: '/seller/dashboard/payments',
         element : <SellerPaymentRequests/>,
         role : 'seller',
         status : 'active'
     },
     {
-        path: 'seller/dashboard/chat-support',
+        path: '/seller/dashboard/chat-support',
         element : <ChatSupport/>,
         role : 'seller',
         visibility : ['active','deactive','pending']
@@ -67,6 +68,12 @@ export const sellerRoutes = [
     {
         path: 'seller/dashboard/profile',
         element : <Profile/>,
+        role : 'seller',
+        status : 'active'
+    },
+    {
+        path: 'seller/dashboard/allProducts/edit/:productId',
+        element : <EditProduct/>,
         role : 'seller',
         status : 'active'
     },

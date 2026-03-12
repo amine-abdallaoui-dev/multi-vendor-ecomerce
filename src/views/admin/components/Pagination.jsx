@@ -26,7 +26,6 @@ const Pagination = ({pageNumber, setPageNumber, perPage, totalItems,showItem}) =
         }
         return button
     }
-    console.log(createButton())
 
     return (
         <div className="w-[95%] flex justify-end mr-10 gap-1 items-center mb-3 text-[13px] lg:text-sm">
